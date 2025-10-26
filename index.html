@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All About BurGer | Legend of Burger</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+} 
+/* Make all h3 headings bigger and bold */
+#menu h3 {
+  font-size: 2.2rem; /* bigger size */
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffcc00; /* base color */
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, #ffcc00, #ffffff, #ffcc00);
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+/* Shine animation */
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+
+/* Background Canvas */
+#bg-animation {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -3;
+  background: radial-gradient(circle at center, #01010a, #000);
+}
+
+/* Watermark */
+.watermark {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('D:/A2B/a2b.png') center/contain no-repeat;
+  opacity: 0.1;
+  width: 1100px;
+  height: 500px;
+  z-index: -2;
+  pointer-events: none;
+  filter: drop-shadow(0 0 25px #FFD70077);
+}
+
+/* Header / Logo */
+header {
+  text-align: center;
+  padding: 60px 20px 20px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  background: none;
+}
+
+.logo img {
+  width: 170px;
+  height: auto;
+  border-radius: 0;
+  box-shadow: 0 0 35px #FFD70077, 0 0 45px #00BFFF33 inset;
+  transition: 0.3s;
+
+}
+.logo img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 55px #FFD700AA, 0 0 65px #00BFFF55 inset;
+}
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #FFD700;
+  margin-top: 15px;
+  text-shadow: 0 0 15px #FFD70077, 0 0 25px #00BFFF55;
+}
+
+/* Burger Slogan */
+.slogan {
+  font-family: 'Orbitron', sans-serif;
+  color: #00BFFF;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #00BFFF88, 0 0 20px #FFD70055;
+}
+
+/* Sections */
+section {
+  padding: 100px 20px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+section h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #FFD700;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px #FFD70099, 0 0 25px #00BFFF55;
+}
+section p {
+  max-width: 750px;
+  margin: auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Button */
+.cta-btn {
+  margin-top: 25px;
+  padding: 14px 38px;
+  font-weight: 600;
+  border-radius: 35px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(45deg, #FFD700, #00BFFF);
+  color: #000;
+  box-shadow: 0 0 20px #FFD700AA;
+  transition: 0.3s;
+}
+.cta-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px #00BFFFAA;
+}
+
+/* Menu */
+.menu-list {
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
+  padding: 40px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #00BFFF33;
+  border-radius: 15px;
+  box-shadow: 0 0 30px #00BFFF33;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+.menu-list h3 {
+  color: #FFD700;
+  margin-top: 25px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #FFD70033;
+}
+.menu-list p {
+  color: #fff;
+  margin: 8px 0;
+  font-size: 1rem;
+}
+.menu-list span {
+  color: #00BFFF;
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  background: #010010;
+  text-align: center;
+  padding: 25px;
+  font-size: 0.9rem;
+  color: #FFD700;
+  box-shadow: inset 0 5px 15px #00BFFF33;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logo img {
+    width: 180px;
+  }
+  .watermark {
+    width: 400px;
+    height: 250px;
+  }
+  section h2 {
+    font-size: 1.8rem;
+  }
+  .slogan {
+    font-size: 1.2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background -->
+<canvas id="bg-animation"></canvas>
+
+<!-- Watermark -->
+<div class="watermark"></div>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img src="D:/A2B/a2b.png" alt="A2B Logo">
+    <div class="logo-text">All About BurGer</div>
+    <div class="slogan">Serving Legends in Every Bite 🍔</div>
+  </div>
+</header>
+
+<!-- Sections -->
+<section id="home">
+  <h2>Welcome to the Legend</h2>
+  <p>Serving mouth-watering burgers with a hint of love and a splash of legend.</p>
+  <button class="cta-btn">Order Now</button>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>We don’t just make burgers. We craft legends. Every bite sparks flavor, fun, and nostalgia — at All About Burger, taste rules the world!</p>
+</section>
+
+<section id="menu">
+  <h2>Our Menu</h2>
+  <div class="menu-list">
+
+    <!-- Legendary Burgers -->
+    <h3>🍔 Legendary Burgers</h3>
+    <p><span>Legendary Chicken Burger</span> — ₹129</p>
+    <p><span>Legendary Aloo Tikki Burger</span> — ₹99</p>
+
+    <!-- Mighty Burgers -->
+    <h3>🔥 Mighty Burgers</h3>
+    <p><span>Mighty Premium Veg Burger</span> — ₹159</p>
+    <p><span>Mighty Paneer Fillet Burger</span> — ₹179</p>
+    <p><span>Mighty Grilled Paneer Burger</span> — ₹189</p>
+    <p><span>Mighty Cheese Burger</span> — ₹199</p>
+    <p><span>Mighty Mutton Pounder Burger</span> — ₹229</p>
+    <p><span>Mighty Chicken Fried Burger</span> — ₹189</p>
+    <p><span>Mighty Grilled Chicken Burger</span> — ₹199</p>
+
+    <!-- Burgers Legacy -->
+    <h3>🍖 Burgers Legacy</h3>
+    <p><span>Lacchedar Smash Chicken Burger</span> — ₹229</p>
+    <p><span>Lacchedar Smash Mutton Burger</span> — ₹269</p>
+    <p><span>Smash Chicken Legacy Burger</span> — ₹199</p>
+    <p><span>Smash Mutton Legacy Burger</span> — ₹249</p>
+
+    <!-- Beverages -->
+    <h3>🥤 Beverages</h3>
+    <p><span>Mineral Water</span> — ₹10</p>
+    <p><span>Campa Cola 500ml</span> — ₹20</p>
+    <p><span>Ice Tea 250ml</span> — ₹119</p>
+    <p><span>Cold Coffee 250ml</span> — ₹129</p>
+    <p><span>Choco Thick Shake 250ml</span> — ₹139</p>
+    <p><span>Hazelnut Can</span> — ₹139</p>
+
+    <!-- Fries & Sides -->
+    <h3>🍟 Fries & Sides</h3>
+    <p><span>Peri-peri Fries</span> — ₹119</p>
+    <p><span>Cheesy French Fries</span> — ₹129</p>
+    <p><span>French Fries</span> — ₹99</p>
+
+    <!-- Veg Deals @109 -->
+    <h3>🥗 Veg Deals @109</h3>
+    <p><span>Legendary Aloo + Campa</span> — ₹109</p>
+    <p><span>Legendary Aloo + Cheese Finger [1 Piece]</span> — ₹109</p>
+    <p><span>Legendary Aloo Burger With Fries</span> — ₹109</p>
+    <p><span>Fries [2 Pieces]</span> — ₹109</p>
+    <p><span>Cheese Fingers [3 Pcs]</span> — ₹109</p>
+
+    <!-- Non-Veg Deals @109 -->
+    <h3>🍗 Non-Veg Deals @109</h3>
+    <p><span>Chicken Strips [3 Pieces]</span> — ₹109</p>
+    <p><span>Chicken Nugget [2 Pieces] + Strip [1 Piece]</span> — ₹109</p>
+    <p><span>Chicken Strip [2 Pieces] + Chicken Wing [2 Pieces]</span> — ₹109</p>
+
+    <!-- Veg Deals @139 -->
+    <h3>🥗 Veg Deals @139</h3>
+    <p><span>Fries [3 Pieces]</span> — ₹139</p>
+    <p><span>Premium Veg + Cheese Finger [3 Pieces]</span> — ₹139</p>
+    <p><span>Cheese Fingers [3 Pieces] + Fries [2 Pieces]</span> — ₹139</p>
+    <p><span>Mighty Premium Veg Burger With Legendary Aloo Burger</span> — ₹139</p>
+    <p><span>Premium Veg + Cheese Finger + Campa</span> — ₹139</p>
+
+    <!-- Non-Veg Deals @139 -->
+    <h3>🍗 Non-Veg Deals @139</h3>
+    <p><span>Chicken Strip + Chicken Wing + Chicken Nugget + Fries</span> — ₹139</p>
+    <p><span>Legendary Chicken Burger With Chicken Wing [1 Piece]</span> — ₹139</p>
+    <p><span>Chicken Strips [3 Pcs] With Fries</span> — ₹139</p>
+    <p><span>Chicken Strips[2 Pc] With Chicken Wings[2 Pc]& Chicken Nuggets[1 Pc]</span> — ₹139</p>
+
+    <!-- Veg Appetizers -->
+    <h3>🥗 Veg Appetizers</h3>
+    <p><span>Cheese Fingers [4 Pcs]</span> — ₹119</p>
+
+    <!-- Non-Veg Appetizers -->
+    <h3>🍗 Non-Veg Appetizers</h3>
+    <p><span>Chicken Strips</span> — ₹149</p>
+    <p><span>Chicken Wings</span> — ₹139</p>
+    <p><span>Chicken Nuggets</span> — ₹129</p>
+
+    <!-- Legendary Meals -->
+    <h3>🍔 Legendary Meals</h3>
+    <p><span>Chicken Burger Meal</span> — ₹248</p>
+    <p><span>Aloo Tikki Burger Meal</span> — ₹218</p>
+
+    <!-- Mighty Meals -->
+    <h3>🔥 Mighty Meals</h3>
+    <p><span>Mutton Pounder Meal</span> — ₹318</p>
+    <p><span>Cheese Burger Meal</span> — ₹318</p>
+    <p><span>Premium Veg Meal</span> — ₹278</p>
+    <p><span>Paneer Fillet Meal</span> — ₹298</p>
+    <p><span>Grilled Paneer Meal</span> — ₹308</p>
+    <p><span>Fried Chicken Meal</span> — ₹308</p>
+    <p><span>Grilled Chicken Meal</span> — ₹308</p>
+
+    <!-- Legacy Meals -->
+    <h3>🍖 Legacy Meals</h3>
+    <p><span>Smash Chicken Meal</span> — ₹318</p>
+    <p><span>Smash Mutton Meal</span> — ₹368</p>
+
+    <!-- Bumper Meals -->
+    <h3>🎉 Bumper Meals</h3>
+    <p><span>Veg Bumper Meal</span> — ₹349</p>
+    <p><span>Legendary Bumper Meal</span> — ₹349</p>
+    <p><span>Mfc Bumper Meal</span> — ₹399</p>
+    <p><span>Smash Bumper Meal</span> — ₹469</p>
+    <p><span>Hybrid Bumper Meal</span> — ₹599</p>
+
+    <!-- Ultimate Meals Pro Max -->
+    <h3>💥 Ultimate Meals Pro Max</h3>
+    <p><span>Ultimate Non Veg Pro Max</span> — ₹1899</p>
+    <p><span>Ultimate Veg Pro Max</span> — ₹1699</p>
+
+    <!-- Feasts -->
+    <h3>🥳 Feasts</h3>
+    <p><span>Veg Feast</span> — ₹499</p>
+    <p><span>Legendary Aloo Tikki Burger [3 Pcs]</span> — ₹249</p>
+    <p><span>Legendary Chicken Burger [3 Pcs]</span> — ₹339</p>
+    <p><span>Smash Mutton [3 Pieces]</span> — ₹739</p>
+    <p><span>Smash Chicken [3 Pieces]</span> — ₹549</p>
+    <p><span>Chicken Feast</span> — ₹519</p>
+    <p><span>Fry Day Smasher Special</span> — ₹899</p>
+    <p><span>Fry Day Burger Special</span> — ₹799</p>
+    <p><span>Fry Day Fried Special</span> — ₹499</p>
+
+  </div>
+</section>
+
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>📍 Upper Ground Floor, Vinayak Plaza, IT, Daliganj Crossing Rd, Nirala Nagar, Lucknow, Uttar Pradesh 226020</p>
+  <p>📞 <a href="tel:+919235811313">+91 92358 11313</a></p>
+  <p>📸 <a href="https://www.instagram.com/allaboutburgerss/?hl=en" target="_blank">Follow us on Instagram</a></p>
+</section>
+
+<footer>
+  <p>© 2025 All About BurGer | Designed by Sahil ✨</p>
+</footer>
+
+<script>
+// Neon Floating Particles Background
+const canvas = document.getElementById('bg-animation');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() {
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.size = Math.random()*2+1;
+    this.speedX = (Math.random()-0.5)*0.6;
+    this.speedY = (Math.random()-0.5)*0.6;
+    this.color = Math.random()>0.5?'#FFD700':'#00BFFF';
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if(this.x<0||this.x>canvas.width) this.speedX*=-1;
+    if(this.y<0||this.y>canvas.height) this.speedY*=-1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=this.color;
+    ctx.shadowBlur=12;
+    ctx.shadowColor=this.color;
+    ctx.fill();
+  }
+}
+
+function initParticles() {
+  particles=[];
+  for(let i=0;i<150;i++) particles.push(new Particle());
+}
+function animate() {
+  ctx.fillStyle='rgba(0,0,0,0.2)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animate);
+}
+initParticles();
+animate();
+</script>
+
+</body>
+</html>
